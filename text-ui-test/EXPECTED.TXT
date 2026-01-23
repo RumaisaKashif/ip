@@ -1,7 +1,52 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+----------------------
+Hello! I'm Pook
+What can I do for you?
+----------------------
 
+----------------------
+Got it. I've added this task:
+  [T][ ] clean
+Now you have 1 tasks in the list.
+----------------------
+
+----------------------
+1. [T][ ] clean
+----------------------
+
+----------------------
+Got it. I've added this task:
+  [E][ ] housewarming (from: 4PM to: 7PM)
+Now you have 2 tasks in the list.
+----------------------
+
+----------------------
+Nice! I've marked this task as done:
+ [T][X] clean
+----------------------
+
+----------------------
+Nice! I've marked this task as done:
+ [E][X] housewarming (from: 4PM to: 7PM)
+----------------------
+
+----------------------
+OK, I've marked this task as not done yet:
+ [E][ ] housewarming (from: 4PM to: 7PM)
+----------------------
+
+----------------------
+Got it. I've added this task:
+  [D][ ] submit physics assignment (by: 25th Jan)
+Now you have 3 tasks in the list.
+----------------------
+
+----------------------
+1. [T][X] clean
+2. [E][ ] housewarming (from: 4PM to: 7PM)
+3. [D][ ] submit physics assignment (by: 25th Jan)
+----------------------
+
+----------------------
+Bye. Hope to see you again soon!
+
+----------------------

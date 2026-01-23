@@ -1,0 +1,9 @@
+todo clean cupboard
+list
+event housewarming /from 4PM /to 7PM
+mark 1
+mark 2
+unmark 2
+deadline submit physics assignment /by 25th Jan
+list
+bye
