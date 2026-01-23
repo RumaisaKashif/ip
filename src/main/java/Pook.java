@@ -32,6 +32,20 @@ public class Pook {
                 System.out.println(" " + markable_task.getTask());
                 System.out.println("----------------------");
             }
+            else if (user_input.startsWith("unmark")) {
+                String[] segments = user_input.split(" ");
+                int task_index = Integer.parseInt(segments[1]) - 1;
+                Task unmarkable_task = input_list.get(task_index);
+                if (unmarkable_task.getStatusIcon().equals("")) {
+                    System.out.println("I've already unmarked this task!");
+                    System.out.println("----------------------");
+                    continue;
+                }
+                unmarkable_task.setStatus(false);
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(" " + unmarkable_task.getTask());
+                System.out.println("----------------------");
+            }
             else if (user_input.equals("list")) {
                 for (int i = 0; i < input_list.size(); i++) {
                     Task task = input_list.get(i);
