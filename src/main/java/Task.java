@@ -11,7 +11,8 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public String getTask() {
+    @Override
+    public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 
@@ -19,3 +20,5 @@ public class Task {
         isDone = flag;
     }
 }
+
+
