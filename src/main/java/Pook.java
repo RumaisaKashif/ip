@@ -48,6 +48,20 @@ public class Pook {
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(" " + unmarkable_task.toString());
                     System.out.println("----------------------");
+                } else if (user_input.startsWith("delete")) {
+                    String[] segments = user_input.split(" ");
+                    if (segments.length < 2) {
+                        throw new PookException("Please specify which list item needs to be deleted.");
+                    }
+                    int task_index = Integer.parseInt(segments[1]) - 1;
+                    if (task_index >= input_list.size() || task_index < 0) {
+                        throw new PookException("Invalid task number!");
+                    }
+                    Task deletable_task = input_list.remove(task_index);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(" " + deletable_task.toString());
+                    System.out.println("Now you have " + input_list.size() + " tasks in the list.");
+                    System.out.println("----------------------");
                 } else if (user_input.startsWith("deadline")) {
                     String[] desc = user_input.substring(9).split(" /by ");
                     if (desc.length < 2 || desc[0].trim().isEmpty() || desc[1].trim().isEmpty()) {
