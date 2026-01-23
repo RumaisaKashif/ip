@@ -1,8 +1,11 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pook {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        List<String> input_list = new ArrayList<>();
         System.out.println("----------------------");
         System.out.println("Hello! I'm Pook");
         System.out.println("What can I do for you?");
@@ -16,9 +19,17 @@ public class Pook {
                 System.out.println();
                 break;
             }
-            System.out.println(user_input);
-            System.out.println("----------------------");
-            System.out.println();
+            else if (user_input.equals("list")) {
+                for (int i = 0; i < input_list.size(); i++) {
+                    System.out.println(i + 1 + ". " + input_list.get(i));
+                } 
+                System.out.println("----------------------");
+            }
+            else {
+                input_list.add(user_input);    
+                System.out.println("added: " + user_input);
+                System.out.println("----------------------");
+            }
         }
         input.close();
         System.out.println("----------------------");
