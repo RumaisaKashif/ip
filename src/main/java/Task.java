@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -10,6 +10,15 @@ public class Task {
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
+
+    protected String getStatusNumber() { 
+        return (isDone ? "1" : "0");
+    }
+
+    /**
+     * Transforms Task to a storage suitable string.
+     */
+    public abstract String toStorableString();
 
     @Override
     public String toString() {
