@@ -53,22 +53,26 @@ public class Storage {
         String[] segments = line.split(" \\| ");
         String taskType = segments[0];
         boolean isDone = segments[1].equals("1");
-
-        switch (taskType) {
-            case "T":
-                Todo todo = new Todo(segments[2]);
-                todo.setStatus(isDone);
-                return todo;
-            case "D":
-                Deadline deadline = new Deadline(segments[2], segments[3]);
-                deadline.setStatus(isDone);
-                return deadline;
-            case "E":
-                Event event = new Event(segments[2], segments[3], segments[4]);
-                event.setStatus(isDone);
-                return event;
-            default:
-                throw new IllegalArgumentException("An error was encountered while parsing pook.txt");
+        try {
+            switch (taskType) {
+                case "T":
+                    Todo todo = new Todo(segments[2]);
+                    todo.setStatus(isDone);
+                    return todo;
+                case "D":
+                    Deadline deadline = new Deadline(segments[2], segments[3]);
+                    deadline.setStatus(isDone);
+                    return deadline;
+                case "E":
+                    Event event = new Event(segments[2], segments[3], segments[4]);
+                    event.setStatus(isDone);
+                    return event;
+                default:
+                    throw new IllegalArgumentException("An error was encountered while parsing pook.txt");
+            }
+        } catch (PookException e) { 
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
