@@ -1,3 +1,5 @@
+package pook;
+
 import java.util.Scanner;
 /**
  * Handles all visual cues to the user
