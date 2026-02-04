@@ -23,28 +23,24 @@ public class Deadline extends Task {
      *
      * @param description description of task
      * @param by due date
-     * @throws DateTimeParseException if input format is invalid
+     * @throws PookException if input format is invalid
      */
-    public Deadline(String description, String by) throws DateTimeParseException {
+    public Deadline(String description, String by) throws PookException {
         super(description);
         this.by = parseDateTime(by);
     }
 
-    private LocalDateTime parseDateTime(String dateTimeString) throws DateTimeParseException {
+    private LocalDateTime parseDateTime(String dateTimeString) throws PookException {
         for (DateTimeFormatter f : INPUT_FORMATS) {
             try {
                 return LocalDateTime.parse(dateTimeString, f);
-            } catch (DateTimeParseException ignored) {
+            } catch (DateTimeParseException e) {
 
             }
         }
         
-        throw new DateTimeParseException(
-                "Invalid date format",
-                dateTimeString,
-                0
-        );
-    }
+        throw new PookException("Invalid format. Please use a supported format " + 
+                            "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");    }
 
     /**
      * Returns a machine-readable string for file storage.

@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Captures a list of saved tasks.
+ * Provides methods to add, remove, get, print, and list tasks.
+ */
 public class TaskList {
     private final List<Task> inputList;
 

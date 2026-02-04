@@ -12,8 +12,10 @@ public class Event extends Task {
     /* Supports 6 types of date time input string formats to parse */
     private static final DateTimeFormatter[] INPUT_FORMATS = {
         DateTimeFormatter.ofPattern("d/MM/yyyy HHmm"),     
-        DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"),    
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),    
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"), 
+        DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"),   
+        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"),   
+        DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm"), 
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")    
     };
 
@@ -23,28 +25,25 @@ public class Event extends Task {
      * @param description description of task
      * @param from from the date/time the event starts
      * @param to till the date/time the event stops
-     * @throws DateTimeParseException if input format is invalid
+     * @throws PookException if input format is invalid
      */
-    public Event(String description, String from, String to) throws DateTimeParseException {
+    public Event(String description, String from, String to) throws PookException {
         super(description);
         this.from = parseDateTime(from);
         this.to = parseDateTime(to);
     }
     
-    private LocalDateTime parseDateTime(String dateTimeString) throws DateTimeParseException {
+    private LocalDateTime parseDateTime(String dateTimeString) throws PookException {
         for (DateTimeFormatter f : INPUT_FORMATS) {
             try {
                 return LocalDateTime.parse(dateTimeString, f);
-            } catch (DateTimeParseException ignored) {
+            } catch (DateTimeParseException e) {
 
             }
         }
         
-        throw new DateTimeParseException(
-                "Invalid date format",
-                dateTimeString,
-                0
-        );
+        throw new PookException("Invalid format. Please use a supported format " + 
+                            "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");
     }
 
     /**
