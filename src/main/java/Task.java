@@ -16,10 +16,17 @@ public abstract class Task {
     }
 
     /**
-     * Transforms Task to a storage suitable string.
+     * Returns a machine-readable string for file storage.
+     *
+     * @return storable string e.g. D | 1 | submit | 2018-01-12 1800
      */
     public abstract String toStorableString();
 
+    /**
+     * Returns a user-friendly string representation.
+     *
+     * @return formatted task string e.g. [X] read a book 
+     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
