@@ -1,15 +1,18 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Pook {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         List<Task> input_list = new ArrayList<>();
+        Storage storage = new Storage();
+        storage.loadFile(input_list);
         System.out.println("----------------------");
         System.out.println("Hello! I'm Pook");
         System.out.println("What can I do for you?");
         System.out.println("----------------------");
+
         while (true) {
             System.out.println();
             String user_input = input.nextLine();
@@ -32,6 +35,7 @@ public class Pook {
                     markable_task.setStatus(true);
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(" " + markable_task.toString());
+                    storage.saveFile(input_list);
                     System.out.println("----------------------");
                 }
                 else if (user_input.startsWith("unmark")) {
@@ -47,6 +51,7 @@ public class Pook {
                     unmarkable_task.setStatus(false);
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(" " + unmarkable_task.toString());
+                    storage.saveFile(input_list);
                     System.out.println("----------------------");
                 } else if (user_input.startsWith("delete")) {
                     String[] segments = user_input.split(" ");
@@ -60,6 +65,7 @@ public class Pook {
                     Task deletable_task = input_list.remove(task_index);
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(" " + deletable_task.toString());
+                    storage.saveFile(input_list);
                     System.out.println("Now you have " + input_list.size() + " tasks in the list.");
                     System.out.println("----------------------");
                 } else if (user_input.startsWith("deadline")) {
@@ -69,6 +75,7 @@ public class Pook {
                     }
                     Deadline task = new Deadline(desc[0], desc[1]);
                     input_list.add(task);
+                    storage.saveFile(input_list);
                     System.out.println("Got it. I've added this task:");
                     System.out.println("  " + task.toString());
                     System.out.println("Now you have " + input_list.size() + " tasks in the list.");
@@ -80,6 +87,7 @@ public class Pook {
                     }
                     Todo task = new Todo(segments[1]);
                     input_list.add(task);
+                    storage.saveFile(input_list);
                     System.out.println("Got it. I've added this task:");
                     System.out.println("  " + task.toString());
                     System.out.println("Now you have " + input_list.size() + " tasks in the list.");
@@ -94,6 +102,7 @@ public class Pook {
                     }
                     Event task = new Event(segments[0], segments[1], segments[2]);
                     input_list.add(task);
+                    storage.saveFile(input_list);
                     System.out.println("Got it. I've added this task:");
                     System.out.println("  " + task.toString());
                     System.out.println("Now you have " + input_list.size() + " tasks in the list.");
@@ -107,18 +116,15 @@ public class Pook {
                     System.out.println("----------------------");
                 } else if (user_input.isEmpty()) {
                     throw new PookException("Please enter a task.");
-                } else {
-                    Task new_task = new Task(user_input);
-                    input_list.add(new_task);    
-                    System.out.println("added: " + user_input);
-                    System.out.println("----------------------");
                 }
             } catch (PookException e) {
                 System.out.println(e.getMessage());
                 System.out.println("----------------------");
             }
         }
+
         input.close();
         System.out.println("----------------------");
     }
+
 }
