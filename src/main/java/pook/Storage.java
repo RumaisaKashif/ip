@@ -10,10 +10,18 @@ import java.util.Scanner;
  * Loads saved files to return the last task list and saves the updated task list to file.
  */
 public class Storage {
-    private static final String STORAGE_FILE_PATH = "data/pook.txt"; 
+    private final String storageFilePath;
+
+    public Storage() {
+        this.storageFilePath = "data/pook.txt";
+    }
+
+    public Storage(String path) {
+        this.storageFilePath = path;
+    } 
 
     private File checkFileExists() throws IOException {
-        File file = new File(STORAGE_FILE_PATH);
+        File file = new File(storageFilePath);
         File parentDir = file.getParentFile();
 
         if (parentDir != null && !parentDir.exists()) {
