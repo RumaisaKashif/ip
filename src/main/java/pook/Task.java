@@ -37,6 +37,16 @@ public abstract class Task {
     public void setStatus(boolean flag) {
         isDone = flag;
     }
+
+    /**
+     * Checks for the presence of specified keyword in the task
+     * 
+     * @param word
+     * @return true if the specified is found in the task description, false otherwise
+     */
+    public boolean contains(String word) { 
+        return description.contains(word);
+    }
 }
 
 

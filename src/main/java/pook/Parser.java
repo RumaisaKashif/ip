@@ -53,6 +53,15 @@ public class Parser {
                 unmarkableTask.setStatus(false);
                 storage.saveFile(tasks.getList());
                 ui.showMessage("OK, I've marked this task as not done yet:\n " + unmarkableTask);
+            } else if (userInput.startsWith("find")) {
+                String[] segments = userInput.split(" ");
+                if (segments.length < 2) {
+                    throw new PookException("Please specify the keyword you're looking for.");
+                }
+
+                String keyword = segments[1];
+                TaskList filteredTasks = tasks.filterTasks(keyword);
+                filteredTasks.printMatches(userInput);
             } else if (userInput.startsWith("delete")) {
                 String[] segments = userInput.split(" ");
                 if (segments.length < 2) {
