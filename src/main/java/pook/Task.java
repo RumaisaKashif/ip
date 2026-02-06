@@ -1,9 +1,17 @@
 package pook;
-
+/**
+ * Stores task descriptions and status
+ * Provides methods to use different string representations of tasks
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Creates a Task with completion status set to false by default
+     * 
+     * @param description of the task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -33,7 +41,7 @@ public abstract class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
-
+    
     public void setStatus(boolean flag) {
         isDone = flag;
     }

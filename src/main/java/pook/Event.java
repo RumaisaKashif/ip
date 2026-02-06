@@ -3,6 +3,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents tasks containing a description, from date/time, and end date/time
+ */
 public class Event extends Task { 
     protected LocalDateTime from;
     protected LocalDateTime to;
@@ -47,22 +50,12 @@ public class Event extends Task {
                             "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");
     }
 
-    /**
-     * Returns a machine-readable string for file storage.
-     *
-     * @return storable string
-     */
     @Override
     public String toStorableString() { 
         return "E | " + getStatusNumber() + " | " + description + " | " 
                 + from.format(STORAGE_FORMAT) + " | " + to.format(STORAGE_FORMAT);
     }
 
-    /**
-     * Returns a user-friendly string representation.
-     *
-     * @return formatted task string
-     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from.format(OUT_FORMAT) + 

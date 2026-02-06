@@ -8,6 +8,9 @@ import java.util.Scanner;
 public class Ui {
     private final Scanner input;
 
+    /**
+     * Initialises UI class with a scanner to take user input
+     */
     public Ui() { 
         input = new Scanner(System.in);
     }
@@ -23,6 +26,9 @@ public class Ui {
         return input.nextLine();
     }
 
+    /**
+     * Displays a formatted string for UI enhancement
+     */
     public void showLine() {
         System.out.println("----------------------");
     }

@@ -12,10 +12,18 @@ import java.util.Scanner;
 public class Storage {
     private final String storageFilePath;
 
+    /**
+     * Creates a storage referring to the default filepath
+     */
     public Storage() {
         this.storageFilePath = "data/pook.txt";
     }
 
+    /**
+     * Creates a Storage
+     * 
+     * @param path is the filepath to load/save to
+     */
     public Storage(String path) {
         this.storageFilePath = path;
     } 

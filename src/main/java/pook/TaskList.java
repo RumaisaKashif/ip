@@ -10,6 +10,9 @@ import java.util.List;
 public class TaskList {
     private final List<Task> inputList;
 
+    /**
+     * Creates a list of Tasks
+     */
     public TaskList() { 
         inputList =  new ArrayList<>();
     }
