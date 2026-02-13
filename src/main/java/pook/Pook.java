@@ -1,5 +1,7 @@
 package pook;
 
+import javafx.util.Pair;
+
 /**
  * Represents the chatbot and facilitates user/chatbot interactions
  */
@@ -27,28 +29,39 @@ public class Pook {
     /**
      * Reads and executes user commands
      */
-    public void run() {
-        ui.showWelcome();
+    public String run(String input) {
         boolean isAlive = true;
 
         while (isAlive) {
-            String userInput = ui.readCommand();
-            ui.showLine();
-
             try {
-                isAlive = Parser.handleInput(tasks, userInput, storage, ui);
+                Pair<Boolean, String> result = Parser.handleInput(tasks, input, storage);
+                isAlive = result.getKey();  
+                String response = result.getValue();
+                return response;
             } catch (PookException e) {
-                ui.showError(e.getMessage());
+                return e.getMessage();
             }
         }
-        
-        ui.close();
+        return "";
     }
 
     /**
      * Starts the program
      */
-    public static void main(String[] args) {
-        new Pook().run();
+    // public static void main(String[] args) {
+    //     new Pook().run();
+    // }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public Pair<Boolean, String> getResponse(String input) {
+        // return run(input);
+        try {
+            Pair<Boolean, String> result = Parser.handleInput(tasks, input, storage);
+            return result;
+        } catch (PookException e) {
+            return new Pair<>(true, e.getMessage());
+        }
     }
 }

@@ -1,5 +1,6 @@
 package pook;
 
+import javafx.util.Pair;
 /**
  * Handles input parsing and execution based on user commands
  */
@@ -12,15 +13,16 @@ public class Parser {
      * @param tasks     TaskList to modify
      * @param storage   to save and/or get tasks
      * @param ui        specified UI
-     * @return false if the user enters bye, else returns true
+     * @return          chatbot's response as a Pair of boolean (should continue?) 
+     *                  and response string 
      * @throws PookException if the command is invalid
      */
-    public static boolean handleInput(TaskList tasks, String userInput, Storage storage, Ui ui)
+    public static Pair<Boolean, String> handleInput(TaskList tasks, String userInput, Storage storage)
             throws PookException {
+        String result = "";
         try {
             if (userInput.equals("bye")) {
-                ui.showMessage("Bye. Hope to see you again soon!");
-                return false; 
+                return new Pair<Boolean, String>(false, "Bye. Hope to see you again soon!"); 
             } else if (userInput.startsWith("mark")) {
                 String[] segments = userInput.split(" ");
                 if (segments.length < 2) {
@@ -30,13 +32,13 @@ public class Parser {
                 int taskIndex = Integer.parseInt(segments[1]) - 1;
                 Task markableTask = tasks.getTask(taskIndex);
 
-                if (markableTask.getStatusIcon().equals("X")) {
+                if (markableTask.getCompletionStatus()) {
                     throw new PookException("I've already marked this task as done!");
                 }
 
                 markableTask.setStatus(true);
                 storage.saveFile(tasks.getList());
-                ui.showMessage("Nice! I've marked this task as done:\n " + markableTask);
+                result =  "Nice! I've marked this task as done:\n " + markableTask;
             } else if (userInput.startsWith("unmark")) {
                 String[] segments = userInput.split(" ");
                 if (segments.length < 2) {
@@ -46,13 +48,13 @@ public class Parser {
                 int taskIndex = Integer.parseInt(segments[1]) - 1;
                 Task unmarkableTask = tasks.getTask(taskIndex);
 
-                if (unmarkableTask.getStatusIcon().equals(" ")) {
+                if (!unmarkableTask.getCompletionStatus()) {
                     throw new PookException("I've already unmarked this task!");
                 }
 
                 unmarkableTask.setStatus(false);
                 storage.saveFile(tasks.getList());
-                ui.showMessage("OK, I've marked this task as not done yet:\n " + unmarkableTask);
+                result = "OK, I've marked this task as not done yet:\n " + unmarkableTask;
             } else if (userInput.startsWith("find")) {
                 String[] segments = userInput.split(" ");
                 if (segments.length < 2) {
@@ -61,7 +63,7 @@ public class Parser {
 
                 String keyword = segments[1];
                 TaskList filteredTasks = tasks.filterTasks(keyword);
-                filteredTasks.printMatches(userInput);
+                result = filteredTasks.getTaskMatches();
             } else if (userInput.startsWith("delete")) {
                 String[] segments = userInput.split(" ");
                 if (segments.length < 2) {
@@ -74,11 +76,9 @@ public class Parser {
                 }
                 Task deletableTask = tasks.remove(taskIndex);
                 storage.saveFile(tasks.getList());
-                ui.showMessage("Noted. I've removed this task:\n " + deletableTask
-                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.");
-            }
-
-            else if (userInput.startsWith("todo")) {
+                result = "Noted. I've removed this task:\n " + deletableTask
+                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.";
+            } else if (userInput.startsWith("todo")) {
                 String[] segments = userInput.split(" ");
                 if (segments.length < 2 || segments[1].trim().isEmpty()) {
                     throw new PookException("Please specify a description for this todo task.");
@@ -86,8 +86,8 @@ public class Parser {
                 Task task = new Todo(segments[1]);
                 tasks.add(task);
                 storage.saveFile(tasks.getList());
-                ui.showMessage("Got it. I've added this task:\n " + task
-                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.");
+                result = "Got it. I've added this task:\n " + task
+                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.";
             } else if (userInput.startsWith("deadline")) {
                 String[] segments = userInput.substring(9).split(" /by ");
                 if (segments.length < 2 || segments[0].trim().isEmpty() || segments[1].trim().isEmpty()) {
@@ -96,8 +96,8 @@ public class Parser {
                 Task task = new Deadline(segments[0], segments[1]);
                 tasks.add(task);
                 storage.saveFile(tasks.getList());
-                ui.showMessage("Got it. I've added this task:\n " + task
-                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.");
+                result = "Got it. I've added this task:\n " + task
+                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.";
             } else if (userInput.startsWith("event")) {
                 if (userInput.length() < 7) { 
                     throw new PookException("Please specify a description, start time, and end time for this event.");
@@ -109,18 +109,18 @@ public class Parser {
                 Task task = new Event(segments[0], segments[1], segments[2]);
                 tasks.add(task);
                 storage.saveFile(tasks.getList());
-                ui.showMessage("Got it. I've added this task:\n " + task
-                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.");
+                result = "Got it. I've added this task:\n " + task
+                        + "\nNow you have " + tasks.getList().size() + " tasks in the list.";
             } else if (userInput.equals("list")) {
-                tasks.printList();
+                result = tasks.getTaskList();
             } else if (userInput.isEmpty()) {
                 throw new PookException("Please enter a task.");
             } else {
                 throw new PookException("I didn't get that, please reenter a valid command.");
             }
         } catch (PookException | IndexOutOfBoundsException e) { 
-            ui.showError(e.getMessage());
+            result = e.getMessage();
         }
-        return true;
+        return new Pair<Boolean,String>(true, result);
     }
 }

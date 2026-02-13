@@ -37,21 +37,34 @@ public class TaskList {
         return inputList.get(index);
     }
 
-    public void printList() {
+    public String getTaskList() { 
+        if (inputList.isEmpty()) {
+            return "Your task list is empty.";
+        }
+
+        String listString = "";
+
         for (int i = 0; i < inputList.size(); i++) {
             Task task = inputList.get(i);
-            System.out.println(i + 1 + ". " + task.toString());
-        } 
-        System.out.println("----------------------");
+            listString = listString + (i + 1) + ". " + task + "\n";
+        }
+
+        return listString;
     }
 
-    public void printMatches(String display) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String getTaskMatches() {
+        if (inputList.isEmpty()) {
+            return "No matching tasks found";
+        }
+
+        String listString = "Here are the matching tasks in your list:\n";
+        
         for (int i = 0; i < inputList.size(); i++) {
             Task task = inputList.get(i);
-            System.out.println(i + 1 + ". " + task.toString());
-        } 
-        System.out.println("----------------------");
+            listString = listString + (i + 1) + ". " + task + "\n";
+        }
+
+        return listString;
     }
     /**
      * Returns a list of all tasks containing a specific keyword

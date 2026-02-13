@@ -16,6 +16,10 @@ public abstract class Task {
         this.description = description;
         this.isDone = false;
     }
+    
+    public Boolean getCompletionStatus() { 
+        return isDone;
+    }
 
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
