@@ -5,24 +5,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<fx:root alignment="TOP_RIGHT"
-         maxHeight="1.7976931348623157E308"
-         maxWidth="1.7976931348623157E308"
-         prefWidth="400.0"
-         type="javafx.scene.layout.HBox"
-         xmlns="http://javafx.com/javafx/17"
-         xmlns:fx="http://javafx.com/fxml/1"
-         spacing="10">
-  <children>
-    <Label fx:id="text" 
-    text="Label" 
-    wrapText="true" 
-    minHeight="-Infinity"
-    style="-fx-background-color: deepskyblue;
+<!-- style="-fx-background-color: deepskyblue;
             -fx-background-radius: 5;
             -fx-padding: 10 15 10 15;
             -fx-text-fill: black;
-            -fx-font-weight: semi-bold;"/>
+            -fx-font-weight: semi-bold;" -->
+
+<fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" spacing="10" stylesheets="@../css/dialog-box.css" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Label fx:id="text" minHeight="-Infinity" styleClass="label" text="Label" wrapText="true" />
     <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
   </children>
   <padding>

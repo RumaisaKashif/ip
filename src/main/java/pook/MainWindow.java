@@ -33,6 +33,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        sendButton.setOnAction(e -> handleUserInput());
+        userInput.setOnAction(e -> handleUserInput());  
     }
 
     /** Injects the chatbot instance */
@@ -52,7 +55,6 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String userText = userInput.getText();
         Pair<Boolean, String> response = pook.getResponse(userInput.getText());
-        // String pookText = pook.getResponse(userInput.getText());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
                 DialogBox.getPookDialog(response.getValue(), pookImage)

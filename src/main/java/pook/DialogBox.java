@@ -69,6 +69,8 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        text.getStyleClass().removeAll("label");
+        text.getStyleClass().add("reply-label");
     }
 
     // private void changeColor() { 
