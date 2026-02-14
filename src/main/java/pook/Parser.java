@@ -20,6 +20,7 @@ public class Parser {
     public static Pair<Boolean, String> handleInput(TaskList tasks, String userInput, Storage storage)
             throws PookException {
         String result = "";
+
         try {
             if (userInput.equals("bye")) {
                 return new Pair<Boolean, String>(false, "Bye. Hope to see you again soon!"); 
@@ -121,6 +122,7 @@ public class Parser {
         } catch (PookException | IndexOutOfBoundsException e) { 
             result = e.getMessage();
         }
+        
         return new Pair<Boolean,String>(true, result);
     }
 }

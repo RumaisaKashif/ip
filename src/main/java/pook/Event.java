@@ -1,4 +1,5 @@
 package pook;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -31,10 +32,10 @@ public class Event extends Task {
      * @param to till the date/time the event stops
      * @throws PookException if input format is invalid
      */
-    public Event(String description, String from, String to) throws PookException {
+    public Event(String description, String fromDate, String toDate) throws PookException {
         super(description);
-        this.from = parseDateTime(from);
-        this.to = parseDateTime(to);
+        this.from = parseDateTime(fromDate);
+        this.to = parseDateTime(toDate);
     }
     
     private LocalDateTime parseDateTime(String dateTimeString) throws PookException {

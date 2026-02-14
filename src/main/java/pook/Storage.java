@@ -71,6 +71,7 @@ public class Storage {
         String[] segments = line.split(" \\| ");
         String taskType = segments[0];
         boolean isDone = segments[1].equals("1");
+        
         try {
             switch (taskType) {
                 case "T":

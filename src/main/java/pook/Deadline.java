@@ -30,9 +30,9 @@ public class Deadline extends Task {
      * @param by due date
      * @throws PookException if input format is invalid
      */
-    public Deadline(String description, String by) throws PookException {
+    public Deadline(String description, String deadline) throws PookException {
         super(description);
-        this.by = parseDateTime(by);
+        this.by = parseDateTime(deadline);
     }
 
     private LocalDateTime parseDateTime(String dateTimeString) throws PookException {
