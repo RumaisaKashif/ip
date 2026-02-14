@@ -19,6 +19,10 @@ public class Parser {
      */
     public static Pair<Boolean, String> handleInput(TaskList tasks, String userInput, Storage storage)
             throws PookException {
+        assert tasks != null : "TaskList should not be empty";
+        assert userInput != null : "User input should not be empty";
+        assert storage != null : "Storage should not be undefined";
+
         String result = "";
         try {
             if (userInput.equals("bye")) {

@@ -26,20 +26,25 @@ public class TaskList {
     }
 
     public void add(Task task) {
+        assert task != null : "Cannot add null task";
         inputList.add(task);
     }
 
     public Task remove(int index) {
-        return inputList.remove(index);
+        int originalSize = inputList.size();
+        Task removedTask = inputList.remove(index);
+        assert inputList.size() == originalSize - 1 : "List size should decrease by 1";
+        return removedTask;
     }
 
     public Task getTask(int index) {
-        return inputList.get(index);
+        Task retrievedTask = inputList.get(index);
+        return retrievedTask;
     }
 
     public String getTaskList() { 
         if (inputList.isEmpty()) {
-            return "Your task list is empty.";
+            return "Your task list is empty";
         }
 
         String listString = "";
@@ -53,9 +58,7 @@ public class TaskList {
     }
 
     public String getTaskMatches() {
-        if (inputList.isEmpty()) {
-            return "No matching tasks found";
-        }
+        assert !inputList.isEmpty() : "Task list should be populated for retrieval";
 
         String listString = "Here are the matching tasks in your list:\n";
         

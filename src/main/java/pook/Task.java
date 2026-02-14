@@ -15,6 +15,7 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        assert this.description != null : "Description should have been assigned";
     }
     
     public Boolean getCompletionStatus() { 
@@ -57,6 +58,7 @@ public abstract class Task {
      * @return true if the specified is found in the task description, false otherwise
      */
     public boolean contains(String word) { 
+        assert word != null : "Keyword should be provided";
         return description.contains(word);
     }
 }

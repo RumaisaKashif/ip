@@ -24,6 +24,10 @@ public class Pook {
             ui.showError(e.getMessage());
             tasks = new TaskList();
         }
+        assert ui != null : "UI should be initialized";
+        assert storage != null : "Storage should be initialized";
+        assert tasks != null : "TaskList should be initialized";
+
     }
 
     /**
@@ -33,8 +37,10 @@ public class Pook {
         boolean isAlive = true;
 
         while (isAlive) {
+            assert input != null : "User input should not be empty";
             try {
                 Pair<Boolean, String> result = Parser.handleInput(tasks, input, storage);
+                assert result != null : "Parser should return a pair";
                 isAlive = result.getKey();  
                 String response = result.getValue();
                 return response;

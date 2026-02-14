@@ -26,19 +26,25 @@ public class Storage {
      */
     public Storage(String path) {
         this.storageFilePath = path;
+        assert storageFilePath != null : "Storage path should be assigned";
     } 
 
     private File checkFileExists() throws IOException {
+        assert storageFilePath != null : "Storage path should be assigned";
         File file = new File(storageFilePath);
         File parentDir = file.getParentFile();
 
         if (parentDir != null && !parentDir.exists()) {
             parentDir.mkdirs();
+            assert parentDir.exists() : "Parent directory has not been created";
         }
 
         if (!file.exists()) {
             file.createNewFile();
         }
+
+        assert file.exists() : "Storage file should exist";
+        assert file.canWrite() : "Storage file must be writable by the application";
 
         return file;
     }
