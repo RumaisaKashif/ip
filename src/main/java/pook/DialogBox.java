@@ -32,21 +32,8 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     public DialogBox(String s, Image i) {
-        // text = new Label(s);
-        // displayPicture = new ImageView(i);
-        // // Background color code from geekforgeeks 
-        // BackgroundFill background_fill = new BackgroundFill(Color.DEEPSKYBLUE, 
-        //         new CornerRadii(5), Insets.EMPTY);
-        // Background background = new Background(background_fill);
-        // text.setBackground(background);
-        // text.setPadding(new Insets(10, 15, 10, 15));
-        // text.setStyle("-fx-text-fill: black; -fx-font-weight: semi-bold;");
-
-        // //Styling the dialog box
-        // text.setWrapText(true);
-        // displayPicture.setFitWidth(100.0);
-        // displayPicture.setFitHeight(100.0);
         this.setAlignment(Pos.TOP_RIGHT);
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -55,10 +42,9 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         text.setText(s);
         displayPicture.setImage(i);
-
-        // this.getChildren().addAll(text, displayPicture);
     }
 
     /**
