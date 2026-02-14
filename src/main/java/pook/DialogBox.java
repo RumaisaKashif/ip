@@ -7,18 +7,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
 /**
@@ -32,21 +25,8 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     public DialogBox(String s, Image i) {
-        // text = new Label(s);
-        // displayPicture = new ImageView(i);
-        // // Background color code from geekforgeeks 
-        // BackgroundFill background_fill = new BackgroundFill(Color.DEEPSKYBLUE, 
-        //         new CornerRadii(5), Insets.EMPTY);
-        // Background background = new Background(background_fill);
-        // text.setBackground(background);
-        // text.setPadding(new Insets(10, 15, 10, 15));
-        // text.setStyle("-fx-text-fill: black; -fx-font-weight: semi-bold;");
-
-        // //Styling the dialog box
-        // text.setWrapText(true);
-        // displayPicture.setFitWidth(100.0);
-        // displayPicture.setFitHeight(100.0);
         this.setAlignment(Pos.TOP_RIGHT);
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -55,10 +35,9 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         text.setText(s);
         displayPicture.setImage(i);
-
-        // this.getChildren().addAll(text, displayPicture);
     }
 
     /**
@@ -69,19 +48,10 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+
         text.getStyleClass().removeAll("label");
         text.getStyleClass().add("reply-label");
     }
-
-    // private void changeColor() { 
-    //     // Background color code from geekforgeeks 
-    //     BackgroundFill background_fill = new BackgroundFill(Color.LIGHTSKYBLUE, 
-    //             new CornerRadii(5), Insets.EMPTY);
-    //     Background background = new Background(background_fill);
-    //     text.setBackground(background);
-    //     text.setPadding(new Insets(10, 15, 10, 15));
-    //     text.setStyle("-fx-text-fill: black; -fx-font-weight: semi-bold;");
-    // }
 
     public static DialogBox getUserDialog(String s, Image i) {
         return new DialogBox(s, i);
@@ -90,7 +60,6 @@ public class DialogBox extends HBox {
     public static DialogBox getPookDialog(String s, Image i) {
         var db = new DialogBox(s, i);
         db.flip();
-        // db.changeColor();
         return db;
     }
 }

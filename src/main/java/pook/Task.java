@@ -4,7 +4,7 @@ package pook;
  * Provides methods to use different string representations of tasks
  */
 public abstract class Task {
-    protected String description;
+    protected String taskDescription;
     protected boolean isDone;
 
     /**
@@ -13,7 +13,7 @@ public abstract class Task {
      * @param description of the task
      */
     public Task(String description) {
-        this.description = description;
+        this.taskDescription = description;
         this.isDone = false;
     }
     
@@ -43,7 +43,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return "[" + getStatusIcon() + "] " + taskDescription;
     }
     
     public void setStatus(boolean flag) {
@@ -57,7 +57,7 @@ public abstract class Task {
      * @return true if the specified is found in the task description, false otherwise
      */
     public boolean contains(String word) { 
-        return description.contains(word);
+        return taskDescription.contains(word);
     }
 }
 

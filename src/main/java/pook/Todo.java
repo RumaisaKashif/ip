@@ -14,7 +14,7 @@ public class Todo extends Task {
 
     @Override
     public String toStorableString() { 
-        return "T | " + getStatusNumber() + " | " + description;
+        return "T | " + getStatusNumber() + " | " + taskDescription;
     }
 
     @Override

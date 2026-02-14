@@ -56,6 +56,7 @@ public class Storage {
 
             while (scanner.hasNextLine()) {
                 Task task = parseFile(scanner.nextLine());
+
                 if (task != null) {
                     tasks.add(task);
                 }
@@ -71,6 +72,7 @@ public class Storage {
         String[] segments = line.split(" \\| ");
         String taskType = segments[0];
         boolean isDone = segments[1].equals("1");
+        
         try {
             switch (taskType) {
                 case "T":

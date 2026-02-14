@@ -15,13 +15,11 @@ public class Pook {
      * Initialises UI, Storage and TaskList 
      */
     public Pook() {
-        ui = new Ui();
         storage = new Storage(); 
         try {
             tasks = new TaskList();
             storage.loadFile(tasks.getList());
         } catch (Exception e) {
-            ui.showError(e.getMessage());
             tasks = new TaskList();
         }
     }
@@ -46,17 +44,9 @@ public class Pook {
     }
 
     /**
-     * Starts the program
-     */
-    // public static void main(String[] args) {
-    //     new Pook().run();
-    // }
-
-    /**
      * Generates a response for the user's chat message.
      */
     public Pair<Boolean, String> getResponse(String input) {
-        // return run(input);
         try {
             Pair<Boolean, String> result = Parser.handleInput(tasks, input, storage);
             return result;

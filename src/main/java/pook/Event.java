@@ -7,8 +7,8 @@ import java.time.format.DateTimeParseException;
  * Represents tasks containing a description, from date/time, and end date/time
  */
 public class Event extends Task { 
-    protected LocalDateTime from;
-    protected LocalDateTime to;
+    protected LocalDateTime fromDate;
+    protected LocalDateTime toDate;
     private static final DateTimeFormatter OUT_FORMAT = 
             DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
     private static final DateTimeFormatter STORAGE_FORMAT =
@@ -27,14 +27,14 @@ public class Event extends Task {
      * Creates an Event
      *
      * @param description description of task
-     * @param from from the date/time the event starts
-     * @param to till the date/time the event stops
+     * @param fromDate from the date/time the event starts
+     * @param toDate till the date/time the event stops
      * @throws PookException if input format is invalid
      */
     public Event(String description, String from, String to) throws PookException {
         super(description);
-        this.from = parseDateTime(from);
-        this.to = parseDateTime(to);
+        this.fromDate = parseDateTime(from);
+        this.toDate = parseDateTime(to);
     }
     
     private LocalDateTime parseDateTime(String dateTimeString) throws PookException {
@@ -52,13 +52,13 @@ public class Event extends Task {
 
     @Override
     public String toStorableString() { 
-        return "E | " + getStatusNumber() + " | " + description + " | " 
-                + from.format(STORAGE_FORMAT) + " | " + to.format(STORAGE_FORMAT);
+        return "E | " + getStatusNumber() + " | " + taskDescription + " | " 
+                + fromDate.format(STORAGE_FORMAT) + " | " + toDate.format(STORAGE_FORMAT);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + this.from.format(OUT_FORMAT) + 
-                " to: " + this.to.format(OUT_FORMAT) + ")";
+        return "[E]" + super.toString() + " (from: " + this.fromDate.format(OUT_FORMAT) + 
+                " to: " + this.toDate.format(OUT_FORMAT) + ")";
     }
 }
