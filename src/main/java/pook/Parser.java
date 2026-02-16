@@ -9,7 +9,7 @@ public class Parser {
     /**
      * Indicates if the program should continue to take input and executes commands
      *
-     * @param userInput user's command
+     * @param userInput user input command
      * @param tasks     TaskList to modify
      * @param storage   to save and/or get tasks
      * @param ui        specified UI
