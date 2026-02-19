@@ -1,3 +1,4 @@
+<!-- Most of the code in the fxml files has been adapted from the tutorial -->
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
@@ -12,6 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="root" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pook.MainWindow">
     <children>
+    <!-- Took help from ChatGPT to place the text input box and send button in a container -->
     <HBox spacing="10"
         alignment="CENTER"
         prefHeight="60.0"

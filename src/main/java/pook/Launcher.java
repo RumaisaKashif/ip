@@ -1,6 +1,7 @@
 package pook;
 
 import javafx.application.Application;
+// Code adapted from provided tutorial
 
 /**
  * A launcher class to workaround classpath issues.
