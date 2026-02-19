@@ -47,7 +47,7 @@ public class TaskList {
             return "Your task list is empty";
         }
 
-        String listString = "";
+        String listString = "You should start by taking me to Vito's but here's your endless list of responsibilities:\n";
 
         for (int i = 0; i < inputList.size(); i++) {
             Task task = inputList.get(i);

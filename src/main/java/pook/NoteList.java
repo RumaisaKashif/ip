@@ -37,7 +37,7 @@ public class NoteList {
             return "Your note list is empty";
         }
 
-        String result = "";
+        String result = "Here’s what you wrote… I hope none of it involves exercise.\n";
         for (int i = 0; i < notes.size(); i++) {
             result += (i + 1) + ". " + notes.get(i) + "\n";
         }
