@@ -5,6 +5,7 @@ import javafx.util.Pair;
  * Handles input parsing and execution based on user commands
  */
 public class Parser {
+    // Used ChatGPT to come up with strings that can give the chatbot a personality similar to Garfield
 
     /**
      * Indicates if the program should continue to take input and executes commands

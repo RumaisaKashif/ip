@@ -29,6 +29,7 @@ public class Storage {
         assert storageFilePath != null : "Storage path should be assigned";
     } 
 
+    // Assertions provided by ChatGPT
     private File checkFileExists() throws IOException {
         assert storageFilePath != null : "Storage path should be assigned";
         File file = new File(storageFilePath);
@@ -42,7 +43,7 @@ public class Storage {
         if (!file.exists()) {
             file.createNewFile();
         }
-
+    
         assert file.exists() : "Storage file should exist";
         assert file.canWrite() : "Storage file must be writable by the application";
 

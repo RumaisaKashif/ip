@@ -46,7 +46,7 @@ public class TaskList {
         if (inputList.isEmpty()) {
             return "Your task list is empty";
         }
-
+        // Half the phrasing of the initial string below is by ChatGPT for personality injection
         String listString = "You should start by taking me to Vito's but here's your endless list of responsibilities:\n";
 
         for (int i = 0; i < inputList.size(); i++) {

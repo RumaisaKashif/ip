@@ -1,4 +1,6 @@
+/* A lot of the code in the css files has been inspired by the JavaFX tutorial */
 .label {
+    /* background code reused from tutorial */
     background: white;
     -fx-background-color: rgb(255, 245, 139);
     -fx-background-radius: 5;
@@ -14,6 +16,7 @@
 }
 
 .reply-label {
+    /* background code reused from tutorial */
     background: white;
     -fx-background-color: rgb(242, 157, 37);
     -fx-background-radius: 5;
@@ -30,7 +33,6 @@
 
 #displayPicture {
     /* Shadow effect on image. */
-    /* -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5); */
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10,0.5,5,5);
     /* Change size of image. */
     -fx-scale-x: 1;

@@ -14,6 +14,7 @@ public class Event extends Task {
             DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
     private static final DateTimeFormatter STORAGE_FORMAT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    // Used some help from ChatGPT to help decide date time formats to help handle them
     /* Supports 6 types of date time input string formats to parse */
     private static final DateTimeFormatter[] INPUT_FORMATS = {
         DateTimeFormatter.ofPattern("d/MM/yyyy HHmm"),     
@@ -46,7 +47,7 @@ public class Event extends Task {
 
             }
         }
-        
+        // Error message phrased by ChatGPT
         throw new PookException("Invalid format. Please use a supported format " + 
                             "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");
     }

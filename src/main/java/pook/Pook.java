@@ -28,6 +28,7 @@ public class Pook {
             notes = new NoteList();
         }
 
+        // Assertions suggested by ChatGPT for this method
         assert storage != null : "Storage should be initialized";
         assert tasks != null : "TaskList should be initialized";
         assert noteStorage != null : "Notes storage should be initialized";

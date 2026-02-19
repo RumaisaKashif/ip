@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
+// Code adapted from provided tutorial
+
 /**
  * Controller for the main GUI.
  */
@@ -30,6 +32,15 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/odie.png"));
     private Image pookImage = new Image(this.getClass().getResourceAsStream("/images/garfield.png"));
 
+    // Used ChatGPT to generate JavaDoc comment for this method
+
+    /**
+     * Initializes the UI components after FXML loading.
+     * 
+     * Binds the scroll pane to automatically scroll to the latest message,
+     * displays the welcome message, and sets up event handlers for
+     * user input submission.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -47,6 +58,8 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     /**
+     * Handles user input after it is submitted.
+     * 
      * Creates a dialog box containing user input, and appends it to
      * the dialog container. Closes the app after reading "bye".
      */

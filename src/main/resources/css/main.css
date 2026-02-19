@@ -1,3 +1,4 @@
+/* A lot of the code in the css files has been inspired by the JavaFX tutorial */
 .root {
     main-color: rgb(237, 255, 242);  
     -fx-background-image: url("../images/bg.jpg"); 
@@ -8,6 +9,7 @@
     -fx-background-color: #F2F2F2;
     -fx-border-color: #F2F2F2;
     -fx-border-width: 5;
+    /* used ChatGPT to set the radius here to get a particular UI look */
     -fx-background-radius: 999;
     -fx-border-radius: 999;
     -fx-font-size: 14px;
@@ -26,7 +28,6 @@
     -fx-border-width: 5;
     -fx-border-radius: 50;
     -fx-background-radius: 55;
-    -fx-font-size: "Arial Bold" 14px; 
 }
 
 .send-button:hover {
@@ -47,6 +48,7 @@
     -fx-font-size: 10px;  
 }
 
+/* Was unable to color the thumb initially so took help from ChatGPT for this */
 .scroll-bar:vertical .thumb {
     -fx-background-color: #F2811D;
     -fx-background-radius: 5;
