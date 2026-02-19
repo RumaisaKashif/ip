@@ -43,10 +43,6 @@ public class MainWindow extends AnchorPane {
         pook = p;
     }
 
-    /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
-     */
     @FXML
     /**
      * Creates a dialog box containing user input, and appends it to

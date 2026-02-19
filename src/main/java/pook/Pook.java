@@ -6,16 +6,16 @@ import javafx.util.Pair;
  * Represents the chatbot and facilitates user/chatbot interactions
  */
 public class Pook {
-
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
+
     /**
      * Creates a Chatbot
      * Initialises UI, Storage and TaskList 
      */
     public Pook() {
         storage = new Storage(); 
+
         try {
             tasks = new TaskList();
             storage.loadFile(tasks.getList());
@@ -40,6 +40,7 @@ public class Pook {
                 return e.getMessage();
             }
         }
+        
         return "";
     }
 

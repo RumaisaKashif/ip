@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
  * Represents tasks containing a description and deadline
  */
 public class Deadline extends Task {
-    protected LocalDateTime deadline;
+    protected LocalDateTime by;
     private static final DateTimeFormatter OUTPUT_FORMAT =
             DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
     private static final DateTimeFormatter STORAGE_FORMAT =
@@ -30,9 +30,9 @@ public class Deadline extends Task {
      * @param deadline due date
      * @throws PookException if input format is invalid
      */
-    public Deadline(String description, String by) throws PookException {
+    public Deadline(String description, String deadline) throws PookException {
         super(description);
-        this.deadline = parseDateTime(by);
+        this.by = parseDateTime(deadline);
     }
 
     private LocalDateTime parseDateTime(String dateTimeString) throws PookException {
@@ -54,8 +54,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorableString() {
-        return "D | " + getStatusNumber() + " | " + taskDescription + " | "
-                + deadline.format(STORAGE_FORMAT);
+        return "D | " + getStatusNumber() + " | " + description + " | "
+                + by.format(STORAGE_FORMAT);
     }
 
     /**
@@ -65,6 +65,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline.format(OUTPUT_FORMAT) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(OUTPUT_FORMAT) + ")";
     }
 }
