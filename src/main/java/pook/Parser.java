@@ -17,11 +17,13 @@ public class Parser {
      *                  and response string 
      * @throws PookException if the command is invalid
      */
-    public static Pair<Boolean, String> handleInput(TaskList tasks, String userInput, Storage storage)
+    public static Pair<Boolean, String> handleInput(TaskList tasks, String userInput, Storage storage, NoteList notes, NoteStorage noteStorage)
             throws PookException {
         assert tasks != null : "TaskList should not be empty";
         assert userInput != null : "User input should not be empty";
         assert storage != null : "Storage should not be undefined";
+        assert notes != null : "NoteList should not be empty";
+        assert noteStorage != null : "NoteStorage should not be undefined";
 
         String result = "";
 
@@ -44,6 +46,8 @@ public class Parser {
                 result = parseEvent(userInput, tasks, storage);
             } else if (userInput.equals("list")) {
                 result = tasks.getTaskList();
+            } else if (userInput.startsWith("note")) {
+                result = parseNote(userInput, notes, noteStorage);
             } else {
                 throw new PookException("I didn't get that, please reenter a valid command.");
             }
@@ -174,5 +178,43 @@ public class Parser {
 
         return "Got it. I've added this task:\n " + task
                 + "\nNow you have " + tasks.getList().size() + " tasks in the list.";
+    }
+
+    private static String parseNote(String userInput, NoteList notes, NoteStorage storage) throws PookException {
+        String[] segments = userInput.split(" ", 3);
+
+        if (segments.length < 2) {
+            throw new PookException("Invalid note command. Try note add/delete/list index.");
+        }
+
+        switch (segments[1]) {
+        case "add":
+            if (segments.length < 3) {
+                throw new PookException("Please provide note content.");
+            }
+            return addNote(segments[2], notes, storage);
+        case "delete":
+            if (segments.length < 3) {
+                throw new PookException("Specify note number to delete.");
+            }
+            return deleteNote(segments[2], notes, storage);
+        case "list":
+            return notes.getNoteList();
+        default:
+            throw new PookException("Unknown note command.");
+        }
+    }
+
+    private static String addNote(String note, NoteList notes, NoteStorage noteStorage) { 
+        notes.add(new Note(note));
+        noteStorage.saveFile(notes.getList());
+        return "Added note:\n" + note;
+    }
+
+    private static String deleteNote(String note, NoteList notes, NoteStorage noteStorage) {
+            int index = Integer.parseInt(note) - 1;
+            Note removed = notes.remove(index);
+            noteStorage.saveFile(notes.getList());
+            return "Deleted note:\n" + removed;
     }
 }
