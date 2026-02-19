@@ -9,6 +9,7 @@ public class PookException extends Exception {
      * @param message to display as the exception error
      */
     public PookException(String message) {
-        super(message);
+        super("Oh good. Another problem.\n" + message + 
+                "\nTry again. Preferably after bringing me lasagna.");
     }
 }
