@@ -9,6 +9,7 @@
     -fx-background-insets: 0px 7px 0px 7px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,2);
     -fx-text-fill: ladder(background, white 49%, black 50%);
 }
 
@@ -23,13 +24,14 @@
     -fx-background-insets: 0px 7px 0px 7px;
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5,0,0,2);
     -fx-text-fill: ladder(background, white 49%, black 50%);
 }
 
 #displayPicture {
     /* Shadow effect on image. */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
-
+    /* -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5); */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10,0.5,5,5);
     /* Change size of image. */
     -fx-scale-x: 1;
     -fx-scale-y: 1;
