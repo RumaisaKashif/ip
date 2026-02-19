@@ -1,6 +1,5 @@
-<!-- Most of the code in the fxml files has been adapted from the tutorial -->
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- Most of the code in the fxml files has been adapted from the tutorial -->
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
