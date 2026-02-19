@@ -33,7 +33,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-
+        dialogContainer.getChildren().add(
+            DialogBox.getPookDialog("Hi! I'm Pook. What can I do for you today?", pookImage)
+        );
         sendButton.setOnAction(e -> handleUserInput());
         userInput.setOnAction(e -> handleUserInput());  
     }

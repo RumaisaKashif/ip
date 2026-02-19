@@ -4,25 +4,44 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="root" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pook.MainWindow">
     <children>
-            <TextField fx:id="userInput" layoutX="6.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="294.0" style="-fx-background-color: #fed330; -fx-border-color: #F2F2F2; -fx-border-width: 5; -fx-border-radius: 4;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="100.0" />
+    <HBox spacing="10"
+        alignment="CENTER"
+        prefHeight="60.0"
+        AnchorPane.bottomAnchor="0.0"
+        AnchorPane.leftAnchor="0.0"
+        AnchorPane.rightAnchor="0.0"
+        styleClass="input-bar">
+        <children>
+            <TextField fx:id="userInput" HBox.hgrow="ALWAYS" promptText="Ask anything" layoutX="6.0" layoutY="558.0" prefHeight="41.0" prefWidth="370.0" onAction="#handleUserInput" styleClass=".text-field" />
             <Button fx:id="sendButton"
-                    text="Ask Pook"
+                    text=""
                     styleClass="send-button"
                     prefHeight="41.0"
-                    prefWidth="97.0"
+                    prefWidth="60.0"
                     AnchorPane.bottomAnchor="1.0"
-                    AnchorPane.rightAnchor="0.0"/>
-            <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-background: transparent;" vbarPolicy="ALWAYS" vvalue="1.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    AnchorPane.rightAnchor="0.0">
+                    <graphic>
+                        <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/send_button.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+            </Button>
+        </children>
+    </HBox>
+            <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="520.0" prefWidth="400.0" style="-fx-background-color: transparent; -fx-background: transparent;" vbarPolicy="ALWAYS" vvalue="1.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
                 <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
             </content>
         </ScrollPane>
     </children>
 </AnchorPane>
-
-<!-- style="-fx-background-color: #F2811D; -fx-border-color: #F2F2F2; -fx-border-width: 5; -fx-border-radius: 50; -fx-background-radius: 55;" text="Ask Pook" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0" -->
