@@ -18,6 +18,6 @@ public class StorageTest {
         Task task = tasks.get(0);
         assertTrue(task instanceof Deadline);
         assertEquals("X", task.getStatusIcon());
-        assertEquals("[D][X] submit tut (by: Jan 12 2018, 1:00 am)", task.toString());
+        assertEquals("[D][X] submit tut (by: Jan 12 2018, 1:00 AM)", task.toString());
     }
 }
