@@ -1,0 +1,5 @@
+remote_theme: pages-themes/minimal@v0.2.0
+title: Pook User Guide
+description: CS2103T ab3 style individual project
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
