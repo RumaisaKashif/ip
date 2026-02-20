@@ -59,7 +59,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + this.from.format(OUT_FORMAT).toLowerCase()
-                + " to: " + this.to.format(OUT_FORMAT).toLowerCase() + ")";
+        return "[E]" + super.toString() + " (from: " + this.from.format(OUT_FORMAT)
+                + " to: " + this.to.format(OUT_FORMAT) + ")";
     }
 }
