@@ -38,6 +38,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
 
             stage.setScene(scene);
+            stage.setTitle("PookTalk");
             fxmlLoader.<MainWindow>getController().setPook(pook);
             stage.show();
         } catch (IOException e) {
