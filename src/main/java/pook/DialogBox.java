@@ -1,20 +1,22 @@
 package pook;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import java.io.IOException;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.Node;
-import java.util.Collections;
 
 /**
- * Represents a dialog box consisting of an ImageView to represent the speaker's face
+ * Represents a dialog box consisting of an ImageView to represent the speaker's
+ * face
  * and a label containing text from the speaker.
  */
 public class DialogBox extends HBox {
@@ -22,7 +24,13 @@ public class DialogBox extends HBox {
     private Label text;
     @FXML
     private ImageView displayPicture;
-
+    // Used ChatGPT to write javadoc comment for this constructor
+    /**
+     * Creates a DialogBox with the specified text and display picture.
+     *
+     * @param s The text to be displayed in the dialog box.
+     * @param i The image to be shown as the speaker's display picture.
+     */
     public DialogBox(String s, Image i) {
         this.setAlignment(Pos.TOP_RIGHT);
 
@@ -34,20 +42,21 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         text.setText(s);
         displayPicture.setImage(i);
     }
 
     /**
-     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     * Flips the dialog box such that the ImageView is on the left and text on the
+     * right.
      */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-        
+
         text.getStyleClass().removeAll("label");
         text.getStyleClass().add("reply-label");
     }
@@ -62,4 +71,3 @@ public class DialogBox extends HBox {
         return db;
     }
 }
-

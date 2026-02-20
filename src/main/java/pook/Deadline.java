@@ -8,27 +8,26 @@ import java.time.format.DateTimeParseException;
  * Represents tasks containing a description and deadline
  */
 public class Deadline extends Task {
-    protected LocalDateTime by;
-    private static final DateTimeFormatter OUTPUT_FORMAT =
-            DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
-    private static final DateTimeFormatter STORAGE_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    // Used some help from ChatGPT to help decide date time formats to help handle them
+    // Used some help from ChatGPT to help decide date time formats to help handle
+    // them
     /* Supports 6 types of date time input string formats to parse */
     private static final DateTimeFormatter[] INPUT_FORMATS = {
-        DateTimeFormatter.ofPattern("d/MM/yyyy HHmm"),     
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"), 
-        DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"),   
-        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"),   
-        DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm"), 
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")    
+            DateTimeFormatter.ofPattern("d/MM/yyyy HHmm"),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
+            DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"),
+            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm"),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
     };
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mm a");
+    private static final DateTimeFormatter STORAGE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    protected LocalDateTime by;
     /**
      * Creates a Deadline
      *
      * @param description description of task
-     * @param deadline due date
+     * @param deadline    due date
      * @throws PookException if input format is invalid
      */
     public Deadline(String description, String deadline) throws PookException {
@@ -41,12 +40,13 @@ public class Deadline extends Task {
             try {
                 return LocalDateTime.parse(dateTimeString, f);
             } catch (DateTimeParseException e) {
-
+                // Try another date time format
             }
         }
         // Error message phrased by ChatGPT
-        throw new PookException("Invalid format. Please use a supported format " + 
-                            "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");    }
+        throw new PookException("Invalid format. Please use a supported format "
+                + "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");
+    }
 
     /**
      * Returns a machine-readable string for file storage.

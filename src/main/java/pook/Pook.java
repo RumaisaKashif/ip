@@ -13,11 +13,11 @@ public class Pook {
 
     /**
      * Creates a Chatbot
-     * Initialises UI, Storage and TaskList 
+     * Initialises UI, Storage and TaskList
      */
     public Pook() {
         try {
-            storage = new Storage(); 
+            storage = new Storage();
             tasks = new TaskList();
             noteStorage = new NoteStorage();
             notes = new NoteList();
@@ -46,14 +46,14 @@ public class Pook {
             try {
                 Pair<Boolean, String> result = Parser.handleInput(tasks, input, storage, notes, noteStorage);
                 assert result != null : "Parser should return a pair";
-                isAlive = result.getKey();  
+                isAlive = result.getKey();
                 String response = result.getValue();
                 return response;
             } catch (PookException e) {
                 return e.getMessage();
             }
         }
-        
+
         return "";
     }
 

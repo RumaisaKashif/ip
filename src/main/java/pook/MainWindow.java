@@ -36,7 +36,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Initializes the UI components after FXML loading.
-     * 
+     *
      * Binds the scroll pane to automatically scroll to the latest message,
      * displays the welcome message, and sets up event handlers for
      * user input submission.
@@ -45,10 +45,9 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(
-            DialogBox.getPookDialog("Hi! I'm Pook. What can I do for you today?", pookImage)
-        );
+                DialogBox.getPookDialog("Hi! I'm Pook. What can I do for you today?", pookImage));
         sendButton.setOnAction(e -> handleUserInput());
-        userInput.setOnAction(e -> handleUserInput());  
+        userInput.setOnAction(e -> handleUserInput());
     }
 
     /** Injects the chatbot instance */
@@ -56,26 +55,26 @@ public class MainWindow extends AnchorPane {
         pook = p;
     }
 
-    @FXML
     /**
      * Handles user input after it is submitted.
-     * 
+     *
      * Creates a dialog box containing user input, and appends it to
      * the dialog container. Closes the app after reading "bye".
      */
+    @FXML
     private void handleUserInput() {
         String userText = userInput.getText();
         Pair<Boolean, String> response = pook.getResponse(userInput.getText());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
-                DialogBox.getPookDialog(response.getValue(), pookImage)
-        );
+                DialogBox.getPookDialog(response.getValue(), pookImage));
         userInput.clear();
-        /* 
-        Close GUI if user typed "bye"
-        Took help from ChatGPT to figure out how to close the app AFTER showing the message
-        */ 
-        if (!response.getKey()) { 
+        /*
+         * Close GUI if user typed "bye"
+         * Took help from ChatGPT to figure out how to close the app AFTER showing the
+         * message
+         */
+        if (!response.getKey()) {
             PauseTransition delay = new PauseTransition(Duration.millis(1000));
             delay.setOnFinished(e -> Platform.exit());
             delay.play();

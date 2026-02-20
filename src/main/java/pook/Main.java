@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  * Entry point of the Pook application.
- * 
+ *
  * Responsible for bootstrapping the JavaFX application and loading the main
  * window from the FXML file.
  */
@@ -24,7 +24,7 @@ public class Main extends Application {
 
     /**
      * Starts the JavaFX application.
-     * 
+     *
      * Loads MainWindow.fxml, initializes the controller,
      * injects the Pook instance, and displays the primary stage.
      *
@@ -36,7 +36,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-            
+
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setPook(pook);
             stage.show();

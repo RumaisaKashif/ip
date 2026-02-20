@@ -13,11 +13,11 @@ public class TaskList {
     /**
      * Creates a list of Tasks
      */
-    public TaskList() { 
-        inputList =  new ArrayList<>();
+    public TaskList() {
+        inputList = new ArrayList<>();
     }
 
-    public TaskList(List<Task> taskList) { 
+    public TaskList(List<Task> taskList) {
         inputList = taskList;
     }
 
@@ -25,11 +25,21 @@ public class TaskList {
         return this.inputList;
     }
 
+    /**
+     * Adds a task to the list of tasks
+     *
+     * @param task
+     */
     public void add(Task task) {
         assert task != null : "Cannot add null task";
         inputList.add(task);
     }
 
+    /**
+     * Removes a task from the list of tasks
+     *
+     * @param index of task to remove based on task list displayed
+     */
     public Task remove(int index) {
         int originalSize = inputList.size();
         Task removedTask = inputList.remove(index);
@@ -42,12 +52,14 @@ public class TaskList {
         return retrievedTask;
     }
 
-    public String getTaskList() { 
+    public String getTaskList() {
         if (inputList.isEmpty()) {
             return "Your task list is empty";
         }
-        // Half the phrasing of the initial string below is by ChatGPT for personality injection
-        String listString = "You should start by taking me to Vito's but here's your endless list of responsibilities:\n";
+        // Half the phrasing of the initial string below is by ChatGPT for personality
+        // injection
+        String listString = "You should start by taking me to Vito's but here's "
+                + "your endless list of responsibilities:\n";
 
         for (int i = 0; i < inputList.size(); i++) {
             Task task = inputList.get(i);
@@ -61,7 +73,7 @@ public class TaskList {
         assert !inputList.isEmpty() : "Task list should be populated for retrieval";
 
         String listString = "Here are the matching tasks in your list:\n";
-        
+
         for (int i = 0; i < inputList.size(); i++) {
             Task task = inputList.get(i);
             listString = listString + (i + 1) + ". " + task + "\n";
@@ -69,13 +81,14 @@ public class TaskList {
 
         return listString;
     }
+
     /**
      * Returns a list of all tasks containing a specific keyword
-     * 
+     *
      * @param keyword
      * @return filtered task list
      */
-    public TaskList filterTasks(String keyword) { 
+    public TaskList filterTasks(String keyword) {
         return new TaskList(inputList.stream().filter(task -> task.contains(keyword)).toList());
     }
 }

@@ -1,11 +1,12 @@
 package pook;
+
 /**
  * Represents tasks containing only a description
  */
-public class Todo extends Task { 
+public class Todo extends Task {
     /**
      * Creates a Todo
-     * 
+     *
      * @param description of the todo task
      */
     public Todo(String description) {
@@ -13,7 +14,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String toStorableString() { 
+    public String toStorableString() {
         return "T | " + getStatusNumber() + " | " + description;
     }
 

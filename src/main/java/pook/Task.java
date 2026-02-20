@@ -1,4 +1,5 @@
 package pook;
+
 /**
  * Stores task descriptions and status
  * Provides methods to use different string representations of tasks
@@ -9,7 +10,7 @@ public abstract class Task {
 
     /**
      * Creates a Task with completion status set to false by default
-     * 
+     *
      * @param description of the task
      */
     public Task(String taskDescription) {
@@ -17,8 +18,8 @@ public abstract class Task {
         this.isDone = false;
         assert this.description != null : "Description should have been assigned";
     }
-    
-    public Boolean getCompletionStatus() { 
+
+    public Boolean getCompletionStatus() {
         return isDone;
     }
 
@@ -26,7 +27,7 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    protected String getStatusNumber() { 
+    protected String getStatusNumber() {
         return (isDone ? "1" : "0");
     }
 
@@ -40,27 +41,26 @@ public abstract class Task {
     /**
      * Returns a user-friendly string representation.
      *
-     * @return formatted task string e.g. [X] read a book 
+     * @return formatted task string e.g. [X] read a book
      */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
-    
+
     public void setStatus(boolean flag) {
         isDone = flag;
     }
 
     /**
      * Checks for the presence of specified keyword in the task
-     * 
+     *
      * @param word
-     * @return true if the specified is found in the task description, false otherwise
+     * @return true if the specified is found in the task description, false
+     *         otherwise
      */
-    public boolean contains(String word) { 
+    public boolean contains(String word) {
         assert word != null : "Keyword should be provided";
         return description.contains(word);
     }
 }
-
-

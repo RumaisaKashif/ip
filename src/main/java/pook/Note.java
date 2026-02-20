@@ -10,7 +10,7 @@ public class Note {
 
     /**
      * Creates a Note with some user entered content
-     * 
+     *
      * @param content of the note
      */
     public Note(String content) {

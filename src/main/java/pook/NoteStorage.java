@@ -1,7 +1,9 @@
 package pook;
-// Code adapted from Storage.java
 
-import java.io.*;
+// Code adapted from Storage.java
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,11 +13,11 @@ import java.util.Scanner;
 public class NoteStorage {
 
     private final String path = "data/notes.txt";
-    
+
     /**
      * Adds notes parsed from the file loaded to the task list specified.
      * Prints exception error if loading runs into an error.
-     * 
+     *
      * @param notes notes list to modify.
      */
     public void loadFile(List<Note> notes) {
@@ -40,7 +42,7 @@ public class NoteStorage {
     /**
      * Saves the updated notes list to the file.
      * Prints an error message if saving runs into an error.
-     * 
+     *
      * @param notes notes list to save into file.
      */
     public void saveFile(List<Note> notes) {

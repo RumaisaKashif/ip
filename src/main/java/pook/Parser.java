@@ -1,11 +1,13 @@
 package pook;
 
 import javafx.util.Pair;
+
 /**
  * Handles input parsing and execution based on user commands
  */
 public class Parser {
-    // Used ChatGPT to come up with strings that can give the chatbot a personality similar to Garfield
+    // Used ChatGPT to come up with strings that can give the chatbot a personality
+    // similar to Garfield
 
     /**
      * Indicates if the program should continue to take input and executes commands
@@ -13,12 +15,14 @@ public class Parser {
      * @param userInput user input command
      * @param tasks     TaskList to modify
      * @param storage   to save and/or get tasks
-     * @param ui        specified UI
-     * @return          chatbot's response as a Pair of boolean (should continue?) 
-     *                  and response string 
+     * @param notes     Notes list to modify
+     * @param noteStorage to save and/or get notes
+     * @return chatbot's response as a Pair of boolean (should continue?)
+     *         and response string
      * @throws PookException if the command is invalid
      */
-    public static Pair<Boolean, String> handleInput(TaskList tasks, String userInput, Storage storage, NoteList notes, NoteStorage noteStorage)
+    public static Pair<Boolean, String> handleInput(TaskList tasks, String userInput, Storage storage, NoteList notes,
+            NoteStorage noteStorage)
             throws PookException {
         assert tasks != null : "TaskList should not be empty";
         assert userInput != null : "User input should not be empty";
@@ -30,11 +34,12 @@ public class Parser {
 
         try {
             if (userInput.equals("bye")) {
-                return new Pair<Boolean, String>(false, "You're welcome, I don't know what you'd do without me either. Bye!"); 
+                return new Pair<Boolean, String>(false,
+                        "You're welcome, I don't know what you'd do without me either. Bye!");
             } else if (userInput.startsWith("mark")) {
-                result =  parseMarkableTask(userInput, tasks, storage);
+                result = parseMarkableTask(userInput, tasks, storage);
             } else if (userInput.startsWith("unmark")) {
-                result =  parseUnmarkableTask(userInput, tasks, storage);
+                result = parseUnmarkableTask(userInput, tasks, storage);
             } else if (userInput.startsWith("find")) {
                 result = parseFilterableTasks(userInput, tasks);
             } else if (userInput.startsWith("delete")) {
@@ -52,14 +57,14 @@ public class Parser {
             } else {
                 throw new PookException("I didn't get that, please reenter a valid command.");
             }
-        } catch (PookException | IndexOutOfBoundsException e) { 
+        } catch (PookException | IndexOutOfBoundsException e) {
             result = e.getMessage();
         }
-        
-        return new Pair<Boolean,String>(true, result);
+
+        return new Pair<Boolean, String>(true, result);
     }
 
-    private static String parseMarkableTask(String userInput, TaskList tasks, Storage storage) throws PookException{ 
+    private static String parseMarkableTask(String userInput, TaskList tasks, Storage storage) throws PookException {
         String[] segments = userInput.split(" ");
 
         if (segments.length < 2) {
@@ -79,7 +84,7 @@ public class Parser {
         return "Wow. Productivity? Sounds boring.\n" + "Anyways, I've marked this as done:\n\n " + markableTask;
     }
 
-    private static String parseUnmarkableTask(String userInput, TaskList tasks, Storage storage) throws PookException{ 
+    private static String parseUnmarkableTask(String userInput, TaskList tasks, Storage storage) throws PookException {
         String[] segments = userInput.split(" ");
 
         if (segments.length < 2) {
@@ -96,9 +101,10 @@ public class Parser {
         unmarkableTask.setStatus(false);
         storage.saveFile(tasks.getList());
 
-        return "Oh joy, humans love redoing pointless work.\n" +
-                "Fine. It’s unmarked:\n\n" + unmarkableTask + 
-                "\nI’m going back to bed.";
+        return "Oh joy, humans love redoing pointless work.\n"
+                + "Fine. It’s unmarked:\n\n"
+                + unmarkableTask
+                + "\nI’m going back to bed.";
     }
 
     private static String parseFilterableTasks(String userInput, TaskList tasks) throws PookException {
@@ -130,10 +136,11 @@ public class Parser {
         Task deletableTask = tasks.remove(taskIndex);
         storage.saveFile(tasks.getList());
 
-        return "Poof. It's gone. Like my will to live on Mondays.\n\n " 
-                + deletableTask +
-                "\nNow you have " + tasks.getList().size() + 
-                " tasks left. Try not to add more.";
+        return "Poof. It's gone. Like my will to live on Mondays.\n\n "
+                + deletableTask
+                + "\nNow you have "
+                + tasks.getList().size()
+                + " tasks left. Try not to add more.";
     }
 
     private static String parseTodo(String userInput, TaskList tasks, Storage storage) throws PookException {
@@ -147,11 +154,13 @@ public class Parser {
         tasks.add(task);
         storage.saveFile(tasks.getList());
 
-        return "You want to do *that*? Bold choice.\n" +
-                "Fine. I added it:\n\n " + task +
-                "\nYou now have " + tasks.getList().size() +
-                " tasks. I recommend a nap instead.";
-        }
+        return "You want to do *that*? Bold choice.\n"
+                + "Fine. I added it:\n\n "
+                + task
+                + "\nYou now have "
+                + tasks.getList().size()
+                + " tasks. I recommend a nap instead.";
+    }
 
     private static String parseDeadline(String userInput, TaskList tasks, Storage storage) throws PookException {
         String[] segments = userInput.substring(9).split(" /by ");
@@ -164,18 +173,22 @@ public class Parser {
         tasks.add(task);
         storage.saveFile(tasks.getList());
 
-        return "Deadline? Ugh… hopefully it doesn’t involve the vet or sunlight. I've added it:\n\n " + task
-                + "\nNow you have " + tasks.getList().size() + " tasks in the list. Could never be me.";
+        return "Deadline? Ugh… hopefully it doesn’t involve the vet or sunlight. I've added it:\n\n "
+                + task
+                + "\nNow you have "
+                + tasks.getList().size()
+                + " tasks in the list. Could never be me.";
     }
 
-    private static String parseEvent(String userInput, TaskList tasks, Storage storage) throws PookException{ 
-        if (userInput.length() < 7) { 
+    private static String parseEvent(String userInput, TaskList tasks, Storage storage) throws PookException {
+        if (userInput.length() < 7) {
             throw new PookException("Please specify a description, start time, and end time for this event.");
         }
 
         String[] segments = userInput.substring(6).split(" /from | /to ");
 
-        if (segments.length < 3 || segments[0].trim().isEmpty() || segments[1].trim().isEmpty() || segments[2].trim().isEmpty()) {
+        if (segments.length < 3 || segments[0].trim().isEmpty() || segments[1].trim().isEmpty()
+                || segments[2].trim().isEmpty()) {
             throw new PookException("Please specify a desription, start time, and end time for this event.");
         }
 
@@ -183,10 +196,12 @@ public class Parser {
         tasks.add(task);
         storage.saveFile(tasks.getList());
 
-        return "An event? Does it involve food?\n" +
-                "Added:\n\n " + task +
-                "\nNow you have " + tasks.getList().size() +
-                " things to attend. Exhausting.";
+        return "An event? Does it involve food?\n"
+                + "Added:\n\n "
+                + task
+                + "\nNow you have "
+                + tasks.getList().size()
+                + " things to attend. Exhausting.";
     }
 
     private static String parseNote(String userInput, NoteList notes, NoteStorage storage) throws PookException {
@@ -214,16 +229,18 @@ public class Parser {
         }
     }
 
-    private static String addNote(String note, NoteList notes, NoteStorage noteStorage) { 
+    private static String addNote(String note, NoteList notes, NoteStorage noteStorage) {
         notes.add(new Note(note));
         noteStorage.saveFile(notes.getList());
-        return "Added note to the Garfield archive, which mostly collects snacks and sarcasm but we make exceptions.\n\n" + note;
+        return "Added note to the Garfield archive,"
+                + "which mostly collects snacks and sarcasm but we make exceptions.\n\n"
+                + note;
     }
 
     private static String deleteNote(String note, NoteList notes, NoteStorage noteStorage) {
-            int index = Integer.parseInt(note) - 1;
-            Note removed = notes.remove(index);
-            noteStorage.saveFile(notes.getList());
-            return "Deleted it. Good, more time for TV and lasagna:\n\n" + removed;
+        int index = Integer.parseInt(note) - 1;
+        Note removed = notes.remove(index);
+        noteStorage.saveFile(notes.getList());
+        return "Deleted it. Good, more time for TV and lasagna:\n\n" + removed;
     }
 }
