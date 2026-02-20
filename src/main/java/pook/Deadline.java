@@ -66,6 +66,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(OUTPUT_FORMAT) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(OUTPUT_FORMAT).toLowerCase()
+                + ")";
     }
 }
