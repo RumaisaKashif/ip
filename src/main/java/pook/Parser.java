@@ -71,7 +71,18 @@ public class Parser {
             throw new PookException("Oh boy. Please specify which list item needs to be marked.");
         }
 
-        int taskIndex = Integer.parseInt(segments[1]) - 1;
+        int taskIndex;
+
+        try {
+            taskIndex = Integer.parseInt(segments[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("This isn't a valid task number.");
+        }
+
+        if (taskIndex >= tasks.getList().size() || taskIndex < 0) {
+            throw new PookException("Invalid task number!");
+        }
+
         Task markableTask = tasks.getTask(taskIndex);
 
         if (markableTask.getCompletionStatus()) {
@@ -91,7 +102,18 @@ public class Parser {
             throw new PookException("Please specify which list item needs to be unmarked.");
         }
 
-        int taskIndex = Integer.parseInt(segments[1]) - 1;
+        int taskIndex;
+
+        try {
+            taskIndex = Integer.parseInt(segments[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("This isn't a valid task number.");
+        }
+
+        if (taskIndex >= tasks.getList().size() || taskIndex < 0) {
+            throw new PookException("Invalid task number!");
+        }
+
         Task unmarkableTask = tasks.getTask(taskIndex);
 
         if (!unmarkableTask.getCompletionStatus()) {
@@ -127,7 +149,13 @@ public class Parser {
             throw new PookException("Please specify which list item needs to be deleted.");
         }
 
-        int taskIndex = Integer.parseInt(segments[1]) - 1;
+        int taskIndex;
+
+        try {
+            taskIndex = Integer.parseInt(segments[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("This isn't a valid task number.");
+        }
 
         if (taskIndex >= tasks.getList().size() || taskIndex < 0) {
             throw new PookException("Invalid task number!");
@@ -223,6 +251,9 @@ public class Parser {
             }
             return deleteNote(segments[2], notes, storage);
         case "list":
+            if (segments.length > 2) {
+                throw new PookException("You might be looking for the command 'note list'");
+            }
             return notes.getNoteList();
         default:
             throw new PookException("Unknown note command.");
@@ -237,9 +268,20 @@ public class Parser {
                 + note;
     }
 
-    private static String deleteNote(String note, NoteList notes, NoteStorage noteStorage) {
-        int index = Integer.parseInt(note) - 1;
-        Note removed = notes.remove(index);
+    private static String deleteNote(String note, NoteList notes, NoteStorage noteStorage) throws PookException {
+        int noteIndex;
+
+        try {
+            noteIndex = Integer.parseInt(note) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("This isn't a valid note number.");
+        }
+
+        if (noteIndex >= notes.getList().size() || noteIndex < 0) {
+            throw new PookException("Invalid note number!");
+        }
+
+        Note removed = notes.remove(noteIndex);
         noteStorage.saveFile(notes.getList());
         return "Deleted it. Good, more time for TV and lasagna:\n\n" + removed;
     }
