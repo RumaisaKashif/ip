@@ -27,8 +27,8 @@ public class Parser {
         assert tasks != null : "TaskList should not be empty";
         assert userInput != null : "User input should not be empty";
         assert storage != null : "Storage should not be undefined";
-        assert notes != null : "NoteList should not be empty";
         assert noteStorage != null : "NoteStorage should not be undefined";
+        assert notes != null : "NoteList should not be empty";
 
         String result = "";
 
