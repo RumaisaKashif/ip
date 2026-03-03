@@ -17,9 +17,9 @@ public class StorageTest {
         List<Task> tasks = new ArrayList<>();
         storage.loadFile(tasks);
         Task task = tasks.get(0);
-        assertTrue(task instanceof Deadline);
+        assertTrue(task instanceof Event);
         assertEquals("X", task.getStatusIcon());
-        assertEquals("[D][X] submit tut (by: Jan 12 2018, 1:00 am)".toLowerCase(),
+        assertEquals("[E][X] pool party (from: Jan 12 2018, 1:00 am to: Jan 13 2018, 1:00 am)".toLowerCase(),
                 task.toString().toLowerCase());
     }
 }
