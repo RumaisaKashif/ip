@@ -71,7 +71,18 @@ public class Parser {
             throw new PookException("Oh boy. Please specify which list item needs to be marked.");
         }
 
-        int taskIndex = Integer.parseInt(segments[1]) - 1;
+        int taskIndex;
+
+        try {
+            taskIndex = Integer.parseInt(segments[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("That doesn’t look like a valid task number.");
+        }
+
+        if (taskIndex >= tasks.getList().size() || taskIndex < 0) {
+            throw new PookException("Invalid task number!");
+        }
+
         Task markableTask = tasks.getTask(taskIndex);
 
         if (markableTask.getCompletionStatus()) {
@@ -91,7 +102,18 @@ public class Parser {
             throw new PookException("Please specify which list item needs to be unmarked.");
         }
 
-        int taskIndex = Integer.parseInt(segments[1]) - 1;
+        int taskIndex;
+
+        try {
+            taskIndex = Integer.parseInt(segments[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("That doesn’t look like a valid task number.");
+        }
+
+        if (taskIndex >= tasks.getList().size() || taskIndex < 0) {
+            throw new PookException("Invalid task number!");
+        }
+
         Task unmarkableTask = tasks.getTask(taskIndex);
 
         if (!unmarkableTask.getCompletionStatus()) {
@@ -127,7 +149,13 @@ public class Parser {
             throw new PookException("Please specify which list item needs to be deleted.");
         }
 
-        int taskIndex = Integer.parseInt(segments[1]) - 1;
+        int taskIndex;
+
+        try {
+            taskIndex = Integer.parseInt(segments[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("That doesn’t look like a valid number.");
+        }
 
         if (taskIndex >= tasks.getList().size() || taskIndex < 0) {
             throw new PookException("Invalid task number!");
@@ -237,8 +265,19 @@ public class Parser {
                 + note;
     }
 
-    private static String deleteNote(String note, NoteList notes, NoteStorage noteStorage) {
-        int index = Integer.parseInt(note) - 1;
+    private static String deleteNote(String note, NoteList notes, NoteStorage noteStorage) throws PookException {
+        int index;
+
+        try {
+            index = Integer.parseInt(note) - 1;
+        } catch (NumberFormatException e) {
+            throw new PookException("That doesn’t look like a valid number.");
+        }
+
+        if (index >= notes.getList().size() || index < 0) {
+            throw new PookException("Invalid note number!");
+        }
+
         Note removed = notes.remove(index);
         noteStorage.saveFile(notes.getList());
         return "Deleted it. Good, more time for TV and lasagna:\n\n" + removed;

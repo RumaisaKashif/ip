@@ -33,6 +33,8 @@ public class Deadline extends Task {
     public Deadline(String description, String deadline) throws PookException {
         super(description);
         this.by = parseDateTime(deadline);
+
+        checkDeadline();
     }
 
     private LocalDateTime parseDateTime(String dateTimeString) throws PookException {
@@ -46,6 +48,17 @@ public class Deadline extends Task {
         // Error message phrased by ChatGPT
         throw new PookException("Invalid format. Please use a supported format "
                 + "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");
+    }
+
+    /**
+     * Checks correctness of entered dates and times.
+     *
+     * @throws PookException if event to date/time is before from date/time
+     */
+    private void checkDeadline() throws PookException {
+        if (!by.isAfter(LocalDateTime.now())) {
+            throw new PookException("The deadline has already passed.");
+        }
     }
 
     /**
