@@ -36,6 +36,9 @@ public class Event extends Task {
         super(description);
         this.from = parseDateTime(fromDate);
         this.to = parseDateTime(toDate);
+
+        // Adapted from ChatGPT
+        checkDateTimes();
     }
 
     private LocalDateTime parseDateTime(String dateTimeString) throws PookException {
@@ -49,6 +52,21 @@ public class Event extends Task {
         // Error message phrased by ChatGPT
         throw new PookException("Invalid format. Please use a supported format "
                 + "like dd/MM/yyyy HHmm or yyyy-MM-dd HH:mm.");
+    }
+
+    // Used ChatGPT to add this date/time validation, based on smoke testing feedback
+
+    /**
+     * Checks correctness of entered dates and times.
+     *
+     * @throws PookException if event to date/time is before from date/time
+     */
+    private void checkDateTimes() throws PookException {
+        if (!from.isBefore(to)) {
+            throw new PookException("Event start time must be before end time.");
+        }
+
+        // Allowed from/to date/times to be in the past as a design choice
     }
 
     @Override
